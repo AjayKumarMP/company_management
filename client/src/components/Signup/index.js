@@ -1,20 +1,17 @@
 import { Form, Input, Button, notification } from 'antd';
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {POST} from '../../rest-client'
 
-const Login = () => {
+const Signup = () => {
+  const [form] = Form.useForm()
     let navigate = useNavigate();
-  const onFinish = async (values) => {
+  const onFinish = async(values) => {
     console.log('Success:', values);
-    try {
-      const result = await POST({url: '/user/login', requestBody: {username: values.username, password: values.password}});
-      if(result.data.success)
-      navigate('/dashboard')
-      notification.success({message:  "Login Successful"})
-    } catch (error) {
-      console.log(error)
-      notification.error({message: 'Login Failed', description: "Check UserName/Password"})
-    }
+    const result =await POST({url: '/user/create', requestBody: {username: values.username, password: values.password}})
+    console.log(result);
+    form.resetFields();
+    notification.success({message: 'Success', description: 'Signup Successful'})
+    navigate('/')
 
   };
 
@@ -24,6 +21,7 @@ const Login = () => {
 
   return (
     <Form
+      form={form}
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 8 }}
@@ -49,16 +47,21 @@ const Login = () => {
         <Input.Password />
       </Form.Item>
 
+      <Form.Item
+        label="re-enter-password"
+        name="repassword"
+        rules={[{ required: true, message: 'Please input your password!', }]}
+      >
+        <Input.Password />
+      </Form.Item>
+
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
-          Login
+          Signup
         </Button>
-        <br />
-        <br />
-        <Link to="/signup" title='Signup' >SigUp </Link>
       </Form.Item>
     </Form>
   );
 };
 
-export default Login;
+export default Signup;

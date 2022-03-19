@@ -5,6 +5,7 @@ import {
     Route,
 } from "react-router-dom";
 import Login from './components/Login';
+import Signup from './components/Signup';
 import CompanyListing from './components/CompanyListing';
 
 const routes = () => {
@@ -13,6 +14,7 @@ const routes = () => {
             <div style={{ paddingTop: '0' }} />
             <Routes>
                 <Route path="/dashboard" element={<CompanyListing />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/" element={<Login />} />
             </Routes>
         </Router >
