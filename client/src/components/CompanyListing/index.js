@@ -14,8 +14,9 @@ export const Listing = () => {
   const [data, setData] = React.useState([]);
 
   const refresh = async() => {
-    const results = await GET('/fetch', {});
-    setData(results.data.data);
+    const results = await GET('APITest/users', {});
+    console.log(results);
+    setData([...results.responseData]);
   };
 
   useEffect(() => {
@@ -88,12 +89,12 @@ export const Listing = () => {
   };
    const showConfirm = (value) => {
     confirm({
-      title: 'Do you Want to delete these items?',
+      title: `Do you Want to ${value.isActive === 'true' ? 'disable': 'enable'} this User?`,
       icon: <ExclamationCircleOutlined />,
       content: 'Once done can"t be reverted',
       onOk() {
         (async () => {
-          await DELETE('/delete', {id: value.id})
+          await DELETE('APITest/user', {id: value.id})
           refresh();
         })()
       },
@@ -105,54 +106,40 @@ export const Listing = () => {
 
   const columns = [
     {
-      title: 'Company Name',
-      dataIndex: 'name',
+      title: 'User Name',
+      dataIndex: 'userName',
       key: 'name',
       ...getColumnSearchProps('name'),
     },
     {
-      title: 'Company Website',
-      dataIndex: 'website',
-      key: 'website',
-      ...getColumnSearchProps('website'),
+      title: 'isAdmin',
+      dataIndex: 'isAdmin',
+      key: 'isAdmin',
+      ...getColumnSearchProps('name'),
     },
     {
-      title: 'Company Phone Number',
-      dataIndex: 'pno',
-      key: 'pno',
-      ...getColumnSearchProps('pno'),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ['descend', 'ascend'],
+      title: 'Active',
+      dataIndex: 'isActive',
+      key: 'isActive',
+      ...getColumnSearchProps('name'),
     },
     {
-      title: 'Company Address',
-      dataIndex: 'address',
-      key: 'address',
-      ...getColumnSearchProps('address'),
+      title: 'Create At',
+      dataIndex: 'createdDate',
+      key: 'createdDate',
+      ...getColumnSearchProps('name'),
     },
     {
-      title: 'Company City',
-      dataIndex: 'city',
-      key: 'city',
-      ...getColumnSearchProps('city'),
+      title: 'Create By',
+      dataIndex: 'createdBy',
+      key: 'createdBy',
+      ...getColumnSearchProps('name'),
     },
     {
-      title: 'Company State',
-      dataIndex: 'city',
-      key: 'city',
-      ...getColumnSearchProps('city'),
-    },
-    {
-      title: 'Company Country',
-      dataIndex: 'city',
-      key: 'city',
-      ...getColumnSearchProps('city'),
-    },
-    {
-      title: 'Industry',
-      dataIndex: 'industry',
-      key: 'industry',
-      ...getColumnSearchProps('industry'),
+      title: 'Updated By',
+      dataIndex: 'updatedBy',
+      key: 'updatedBy',
+      ...getColumnSearchProps('name'),
     },
     {
       title: 'Action',
@@ -168,7 +155,7 @@ export const Listing = () => {
   const handleSubmit = async (values) => {
     console.log(values);
     try {
-      await POST({url: '/create', requestBody: values})
+      await POST({url: 'APITest/user', requestBody: values})
       notification.success({message: 'Company added successfully'})
       setVisible(false);
       refresh();

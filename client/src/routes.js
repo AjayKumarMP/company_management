@@ -7,6 +7,8 @@ import {
 import Login from './components/Login';
 import Signup from './components/Signup';
 import CompanyListing from './components/CompanyListing';
+import ApiResults from './components/apiResults';
+import Analytics from "./components/apiResultsAnalytics";
 
 const routes = () => {
     return (
@@ -14,6 +16,8 @@ const routes = () => {
             <div style={{ paddingTop: '0' }} />
             <Routes>
                 <Route path="/dashboard" element={<CompanyListing />} />
+                <Route path="/apiResults" element={<ApiResults />} />
+                <Route path="/analytics" element={<Analytics />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/" element={<Login />} />
             </Routes>

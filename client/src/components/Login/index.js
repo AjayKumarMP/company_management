@@ -7,8 +7,8 @@ const Login = () => {
   const onFinish = async (values) => {
     console.log('Success:', values);
     try {
-      const result = await POST({url: '/user/login', requestBody: {username: values.username, password: values.password}});
-      if(result.data.success)
+      const result = await POST({url: 'authenticate', requestBody: {username: values.username, password: values.password}});
+      if(result.jwtToken)
       navigate('/dashboard')
       notification.success({message:  "Login Successful"})
     } catch (error) {
