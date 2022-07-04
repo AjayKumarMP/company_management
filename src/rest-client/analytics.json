@@ -1,0 +1,47 @@
+{
+    "responseData": {
+        "analysedResults": {
+            "passed": 2,
+            "failed": 34,
+            "skipped": 0,
+            "total": 36,
+            "resultsCategorization": [
+                {
+                    "category": "Passed Tests",
+                    "testResultType": "PASSED",
+                    "impactedTests": 2,
+                    "testsPriorityDetail": {
+                        "p1": 0,
+                        "p2": 0,
+                        "p3": 0
+                    }
+                },
+                {
+                    "category": "Invoker - REFRESH Job entry is not added for the user",
+                    "testResultType": "FAILED",
+                    "impactedTests": 34,
+                    "testsPriorityDetail": {
+                        "p1": 26,
+                        "p2": 6,
+                        "p3": 2
+                    }
+                },
+                {
+                    "category": "Invoker - REFRESH Job entry is not added for the user",
+                    "testResultType": "SKIPPED",
+                    "impactedTests": 34,
+                    "testsPriorityDetail": {
+                        "p1": 2,
+                        "p2": 7,
+                        "p3": 9
+                    }
+                }
+            ],
+            "insightsExecutionDetail": {
+                "PROJECTED_LOW_BALANCE": 5.555555555555555,
+                "test": 212123,
+                "test2":  2323.232
+            }
+        }
+    }
+}
